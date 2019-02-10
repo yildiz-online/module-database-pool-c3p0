@@ -60,6 +60,9 @@ public final class C3P0ConnectionProvider extends DataBaseConnectionProvider {
      */
     private final ComboPooledDataSource cpds;
 
+    /**
+     * Flag to check if pool is open or closed.
+     */
     private boolean open = false;
 
     /**
@@ -67,8 +70,8 @@ public final class C3P0ConnectionProvider extends DataBaseConnectionProvider {
      *
      * @param system     Database system to use.
      * @param properties Properties holding connection data.
+     * @param root Flag to check if the connection must be made using root credential or not.
      * @throws SQLException         If an exception occurs when building the object.
-     * @throws NullPointerException if a parameter is null.
      */
     C3P0ConnectionProvider(final DatabaseSystem system, final DbProperties properties, boolean root) throws SQLException {
         super(system, properties, root);
@@ -90,6 +93,13 @@ public final class C3P0ConnectionProvider extends DataBaseConnectionProvider {
         this.cpds.setAutoCommitOnClose(true);
     }
 
+    /**
+     * Build a C3P0 connection provider, set the default C3P0 logger silent, the max idle time is 1 hour, autocommit is set to true.
+     *
+     * @param system     Database system to use.
+     * @param properties Properties holding connection data.
+     * @throws SQLException         If an exception occurs when building the object.
+     */
     C3P0ConnectionProvider(final DatabaseSystem system, final DbProperties properties) throws SQLException {
         this(system, properties, false);
     }
