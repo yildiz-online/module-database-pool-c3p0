@@ -29,6 +29,7 @@ package be.yildizgames.module.database.pool;
 import be.yildizgames.module.database.DataBaseConnectionProvider;
 import be.yildizgames.module.database.DatabaseSystem;
 import be.yildizgames.module.database.DbProperties;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,7 +58,7 @@ public final class C3P0ConnectionProvider extends DataBaseConnectionProvider {
     /**
      * C3P0 data source.
      */
-  //  private final ComboPooledDataSource cpds;
+    private final ComboPooledDataSource cpds;
 
     /**
      * Flag to check if pool is open or closed.
@@ -77,7 +78,7 @@ public final class C3P0ConnectionProvider extends DataBaseConnectionProvider {
         LOGGER.info("Using C3P0 connection pool.");
         System.setProperty("com.mchange.v2.log.FallbackMLog.DEFAULT_CUTOFF_LEVEL", "WARNING");
         System.setProperty("com.mchange.v2.log.MLog", "com.mchange.v2.log.FallbackMLog");
-     /*   this.cpds = new ComboPooledDataSource();
+        this.cpds = new ComboPooledDataSource();
         try {
             this.cpds.setDriverClass(system.getDriver());
         } catch (Exception e) {
@@ -89,7 +90,7 @@ public final class C3P0ConnectionProvider extends DataBaseConnectionProvider {
         this.cpds.setPassword(this.getPassword());
         this.cpds.setMaxIdleTime(ONE_HOUR);
         this.cpds.setMaxIdleTimeExcessConnections(HALF_HOUR);
-        this.cpds.setAutoCommitOnClose(true);*/
+        this.cpds.setAutoCommitOnClose(true);
     }
 
     /**
@@ -105,14 +106,13 @@ public final class C3P0ConnectionProvider extends DataBaseConnectionProvider {
 
     @Override
     protected Connection getConnectionImpl() throws SQLException {
-        return null;
-    //    return this.cpds.getConnection();
+        return this.cpds.getConnection();
     }
 
     @Override
     public void close() {
         if(open) {
-      //      this.cpds.close();
+            this.cpds.close();
             this.open = false;
             LOGGER.info("Closed database connection pool.");
         }
