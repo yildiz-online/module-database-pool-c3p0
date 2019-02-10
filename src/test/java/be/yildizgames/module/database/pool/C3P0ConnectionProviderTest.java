@@ -29,9 +29,6 @@ package be.yildizgames.module.database.pool;
 import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.module.database.DataBaseConnectionProvider;
 import be.yildizgames.module.database.DbProperties;
-import be.yildizgames.module.database.DummyDatabaseConnectionProvider;
-import be.yildizgames.module.database.DummySystem;
-import be.yildizgames.module.database.pool.C3P0ConnectionProvider;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
