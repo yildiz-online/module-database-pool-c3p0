@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!--
-  ~
   ~ This file is part of the Yildiz-Engine project, licenced under the MIT License  (MIT)
   ~
   ~ Copyright (c) 2019 Grégory Van den Borre
@@ -43,7 +44,7 @@
   <parent>
     <groupId>be.yildiz-games</groupId>
     <artifactId>parent</artifactId>
-    <version>3.0.4</version>
+    <version>3.0.5-SNAPSHOT</version>
   </parent>
 
   <dependencies>
@@ -65,11 +66,6 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
