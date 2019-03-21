@@ -29,10 +29,11 @@ package be.yildizgames.module.database.pool;
 import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.module.database.DataBaseConnectionProvider;
 import be.yildizgames.module.database.DbProperties;
+import be.yildizgames.module.database.dummy.DummyDatabaseConnectionProvider;
+import be.yildizgames.module.database.dummy.DummySystem;
+import org.h2.Driver;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
-import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -48,19 +49,19 @@ public class C3P0ConnectionProviderTest {
         @Test
         public void happyFlow() throws Exception {
             DbProperties properties = new DummyDatabaseConnectionProvider.DefaultProperties();
-            try(DataBaseConnectionProvider p = new C3P0ConnectionProvider(new DummySystem(), properties)) {
+            try(DataBaseConnectionProvider p = new C3P0ConnectionProvider(new DummySystem(Driver::new), properties)) {
             }
         }
 
         @Test
-        public void withNullSystem() throws SQLException {
+        public void withNullSystem() {
             DbProperties properties = new DummyDatabaseConnectionProvider.DefaultProperties();
             assertThrows(ImplementationException.class, () -> new C3P0ConnectionProvider(null, properties));
         }
 
         @Test
-        public void withNullProperties() throws SQLException {
-            assertThrows(ImplementationException.class, () -> new C3P0ConnectionProvider(new DummySystem(), null));
+        public void withNullProperties() {
+            assertThrows(ImplementationException.class, () -> new C3P0ConnectionProvider(new DummySystem(Driver::new), null));
         }
     }
 
@@ -70,7 +71,7 @@ public class C3P0ConnectionProviderTest {
         @Test
         public void happyFlow() throws Exception {
             DbProperties properties = new DummyDatabaseConnectionProvider.DefaultProperties();
-            try(DataBaseConnectionProvider p = new C3P0ConnectionProvider(new DummySystem(), properties)) {
+            try(DataBaseConnectionProvider p = new C3P0ConnectionProvider(new DummySystem(Driver::new), properties)) {
                 assertNotNull(p.getConnection());
             }
         }
@@ -82,7 +83,7 @@ public class C3P0ConnectionProviderTest {
         @Test
         public void happyFlow() throws Exception {
             DbProperties properties = new DummyDatabaseConnectionProvider.DefaultProperties();
-            DataBaseConnectionProvider p = new C3P0ConnectionProvider(new DummySystem(), properties);
+            DataBaseConnectionProvider p = new C3P0ConnectionProvider(new DummySystem(Driver::new), properties);
             p.getConnection();
             p.close();
         }

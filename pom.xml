@@ -44,7 +44,7 @@
   <parent>
     <groupId>be.yildiz-games</groupId>
     <artifactId>parent</artifactId>
-    <version>3.0.5-SNAPSHOT</version>
+    <version>3.0.5</version>
   </parent>
 
   <dependencies>
@@ -56,7 +56,7 @@
     <dependency>
       <groupId>be.yildiz-games</groupId>
       <artifactId>common-logging</artifactId>
-      <version>3.1.0</version>
+      <version>3.1.1</version>
     </dependency>
     <dependency>
       <groupId>com.mchange</groupId>
