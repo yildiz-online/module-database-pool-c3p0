@@ -110,7 +110,7 @@ public final class C3P0ConnectionProvider extends DataBaseConnectionProvider {
     }
 
     @Override
-    public void close() {
+    public final void close() {
         if(open) {
             this.cpds.close();
             this.open = false;

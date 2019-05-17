@@ -88,4 +88,5 @@ public class C3P0ConnectionProviderTest {
             p.close();
         }
     }
+
 }

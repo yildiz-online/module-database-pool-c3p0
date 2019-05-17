@@ -34,10 +34,13 @@ import be.yildizgames.module.database.pool.exception.PersistenceException;
 
 import java.sql.SQLException;
 
+/**
+ * @author Grégory Van den Borre
+ */
 public class C3P0ConnectionProviderRegisterer implements ConnectionProviderRegisterer {
 
     @Override
-    public DataBaseConnectionProvider register(DatabaseSystem system, DbProperties properties, boolean root) {
+    public final DataBaseConnectionProvider register(DatabaseSystem system, DbProperties properties, boolean root) {
         try {
             return new C3P0ConnectionProvider(system, properties, root);
         } catch (SQLException e) {
