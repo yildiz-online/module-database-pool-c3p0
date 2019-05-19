@@ -10,7 +10,7 @@ The C3P0 pool module is a component meant to provide database connection using C
 
 ## Requirements
 
-To build this module, you will need the latest java JDK and Maven.
+To build this module, you will need the latest Java JDK and Maven.
 
 ## Coding Style and other information
 

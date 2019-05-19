@@ -28,6 +28,9 @@ package be.yildizgames.module.database.pool.exception;
 
 import be.yildizgames.common.exception.technical.TechnicalException;
 
+/**
+ * @author Grégory Van den Borre
+ */
 public class PersistenceException extends TechnicalException {
 
     public PersistenceException(Exception cause) {
