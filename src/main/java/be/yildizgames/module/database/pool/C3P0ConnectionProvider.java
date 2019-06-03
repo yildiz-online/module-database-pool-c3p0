@@ -30,8 +30,6 @@ import be.yildizgames.module.database.DataBaseConnectionProvider;
 import be.yildizgames.module.database.DatabaseSystem;
 import be.yildizgames.module.database.DbProperties;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -43,7 +41,7 @@ import java.sql.SQLException;
  */
 public final class C3P0ConnectionProvider extends DataBaseConnectionProvider {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(C3P0ConnectionProvider.class);
+    private static final System.Logger LOGGER = System.getLogger(C3P0ConnectionProvider.class.getName());
 
     /**
      * Time in seconds.
@@ -75,14 +73,14 @@ public final class C3P0ConnectionProvider extends DataBaseConnectionProvider {
      */
     C3P0ConnectionProvider(final DatabaseSystem system, final DbProperties properties, boolean root) throws SQLException {
         super(system, properties, root);
-        LOGGER.info("Using C3P0 connection pool.");
+        LOGGER.log(System.Logger.Level.INFO, "Using C3P0 connection pool.");
         System.setProperty("com.mchange.v2.log.FallbackMLog.DEFAULT_CUTOFF_LEVEL", "WARNING");
         System.setProperty("com.mchange.v2.log.MLog", "com.mchange.v2.log.FallbackMLog");
         this.cpds = new ComboPooledDataSource();
         try {
             this.cpds.setDriverClass(system.getDriver());
         } catch (Exception e) {
-            LOGGER.error("Error in pool", e);
+            LOGGER.log(System.Logger.Level.ERROR, "Error in pool", e);
             throw new SQLException("Cannot load pool driver.", e);
         }
         this.cpds.setJdbcUrl(this.getUri());
@@ -114,7 +112,7 @@ public final class C3P0ConnectionProvider extends DataBaseConnectionProvider {
         if(open) {
             this.cpds.close();
             this.open = false;
-            LOGGER.info("Closed database connection pool.");
+            LOGGER.log(System.Logger.Level.INFO, "Closed database connection pool.");
         }
     }
 }
