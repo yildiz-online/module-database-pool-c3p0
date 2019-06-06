@@ -22,7 +22,7 @@
  *
  */
 
-module be.yildizgames.module.database.pool.hikari {
+module be.yildizgames.module.database.pool.c3p0 {
     requires java.sql;
     requires java.xml;
 
