@@ -25,6 +25,7 @@
 module be.yildizgames.module.database.pool.c3p0 {
     requires java.sql;
     requires java.xml;
+    requires java.naming;
 
     requires c3p0;
 
