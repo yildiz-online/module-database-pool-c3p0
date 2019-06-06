@@ -26,7 +26,6 @@
 
 package be.yildizgames.module.database.pool;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.module.database.DataBaseConnectionProvider;
 import be.yildizgames.module.database.DbProperties;
 import be.yildizgames.module.database.dummy.DummyDatabaseConnectionProvider;
@@ -56,12 +55,12 @@ public class C3P0ConnectionProviderTest {
         @Test
         public void withNullSystem() {
             DbProperties properties = new DummyDatabaseConnectionProvider.DefaultProperties();
-            assertThrows(ImplementationException.class, () -> new C3P0ConnectionProvider(null, properties));
+            assertThrows(NullPointerException.class, () -> new C3P0ConnectionProvider(null, properties));
         }
 
         @Test
         public void withNullProperties() {
-            assertThrows(ImplementationException.class, () -> new C3P0ConnectionProvider(new DummySystem(Driver::new), null));
+            assertThrows(NullPointerException.class, () -> new C3P0ConnectionProvider(new DummySystem(Driver::new), null));
         }
     }
 
