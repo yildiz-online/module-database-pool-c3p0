@@ -43,32 +43,32 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class C3P0ConnectionProviderTest {
 
     @Nested
-    public class Constructor {
+    class Constructor {
 
         @Test
-        public void happyFlow() throws Exception {
+        void happyFlow() throws Exception {
             DbProperties properties = new DummyDatabaseConnectionProvider.DefaultProperties();
             try(DataBaseConnectionProvider p = new C3P0ConnectionProvider(new DummySystem(Driver::new), properties)) {
             }
         }
 
         @Test
-        public void withNullSystem() {
+        void withNullSystem() {
             DbProperties properties = new DummyDatabaseConnectionProvider.DefaultProperties();
             assertThrows(NullPointerException.class, () -> new C3P0ConnectionProvider(null, properties));
         }
 
         @Test
-        public void withNullProperties() {
+        void withNullProperties() {
             assertThrows(NullPointerException.class, () -> new C3P0ConnectionProvider(new DummySystem(Driver::new), null));
         }
     }
 
     @Nested
-    public class GetConnection {
+    class GetConnection {
 
         @Test
-        public void happyFlow() throws Exception {
+        void happyFlow() throws Exception {
             DbProperties properties = new DummyDatabaseConnectionProvider.DefaultProperties();
             try(DataBaseConnectionProvider p = new C3P0ConnectionProvider(new DummySystem(Driver::new), properties)) {
                 assertNotNull(p.getConnection());
@@ -77,10 +77,10 @@ public class C3P0ConnectionProviderTest {
     }
 
     @Nested
-    public class Close {
+    class Close {
 
         @Test
-        public void happyFlow() throws Exception {
+        void happyFlow() throws Exception {
             DbProperties properties = new DummyDatabaseConnectionProvider.DefaultProperties();
             DataBaseConnectionProvider p = new C3P0ConnectionProvider(new DummySystem(Driver::new), properties);
             p.getConnection();
