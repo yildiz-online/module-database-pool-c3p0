@@ -56,7 +56,7 @@
     <dependency>
       <groupId>be.yildiz-games</groupId>
       <artifactId>module-database</artifactId>
-      <version>3.2.5</version>
+      <version>3.3.0</version>
     </dependency>
     <dependency>
       <groupId>com.mchange</groupId>
