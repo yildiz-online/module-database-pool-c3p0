@@ -28,7 +28,7 @@ module be.yildizgames.module.database.pool.c3p0 {
     requires java.naming;
     requires java.desktop;
 
-    requires c3p0;
+    requires com.mchange.v2.c3p0;
 
     requires be.yildizgames.module.database;
 }
